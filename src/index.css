@@ -1,0 +1,193 @@
+/* ============================================================
+   Global reset & base
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* scroll-behavior must be on `html` (not just body) for cross-browser
+   anchor-scroll support when the CTA href="#gallery" is activated */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #1a1a1a;
+  background-color: #fafafa;
+}
+
+/* ============================================================
+   Hero section
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /*
+   * BACKGROUND IMAGE — CSS-only (no <img> element in Hero.jsx).
+   * This avoids jsdom network-request errors in tests and keeps
+   * the markup clean. Visual verification must be done in a real browser.
+   * Source: Unsplash — https://images.unsplash.com/photo-1583337130417-3346a1be7dee
+   */
+  background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Gradient overlay rendered via an aria-hidden <div> in Hero.jsx
+   to ensure WCAG AA contrast over the background image */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  pointer-events: none;
+}
+
+/* Content wrapper — max-width + margin: 0 auto centres it on wide viewports.
+   Both properties are required; max-width alone is insufficient without
+   explicit auto margins when the parent uses flex centering. */
+.hero-content {
+  position: relative; /* above overlay */
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.hero-headline {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subheadline {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  opacity: 0.92;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 0.875rem 2.25rem;
+  background-color: #c8a96e;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  background-color: #b8924f;
+  transform: translateY(-2px);
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   Product Highlights section
+   ============================================================ */
+.product-highlights {
+  padding: 5rem 1.5rem;
+  background-color: #ffffff;
+}
+
+.product-highlights__heading {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #1a1a1a;
+}
+
+.product-highlights__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.highlight-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  background-color: #fafafa;
+  transition: box-shadow 0.2s ease;
+}
+
+.highlight-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.highlight-card__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.highlight-card__description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* ============================================================
+   Responsive — mobile 375px breakpoint
+   ============================================================ */
+@media (max-width: 480px) {
+  /* Hero text must not overflow at 375px */
+  .hero-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Cards reflow to single column */
+  .product-highlights__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .product-highlights__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
