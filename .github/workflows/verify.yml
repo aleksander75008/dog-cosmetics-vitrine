@@ -1,8 +1,10 @@
-name: Verify
+name: verify
 
 on:
   push:
+    branches: ["**"]
   pull_request:
+    branches: ["**"]
 
 jobs:
   verify:
@@ -15,14 +17,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          # restore-keys fallback ensures a cache miss on first run
-          # (before package-lock.json exists) does not fail the job.
+          node-version: 20
+          # cache: 'npm' intentionally omitted — repo policy forbids committing
+          # package-lock.json, so npm-cache mode would hard-fail on a missing lockfile.
 
       - name: Install dependencies
-        # npm install (NOT npm ci) — greenfield repo has no committed
-        # package-lock.json; npm ci would hard-fail without one.
         run: npm install
 
       - name: Lint
@@ -30,3 +29,6 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Build
+        run: npm run build
