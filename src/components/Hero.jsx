@@ -20,7 +20,7 @@ export default function Hero() {
           tested by tails.
         </p>
         <a href="#gallery" className="hero-cta" role="button">
-          Shop the Collection
+          Explore Collection
         </a>
       </div>
     </section>
