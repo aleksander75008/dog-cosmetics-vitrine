@@ -1,37 +1,40 @@
-name: Verify
+name: verify
 
 on:
   push:
+    branches: ['**']
   pull_request:
+    branches: ['**']
 
 jobs:
   verify:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          # restore-keys fallback ensures a cache miss on first run (no lockfile yet)
-          # does not fail the job — npm install will regenerate the lockfile.
+          # cache: 'npm' is intentionally omitted — no lockfile is committed.
+          # The acceptance criteria requires npm install (not npm ci) with no
+          # package-lock.json. Caching is keyed to package.json via actions/cache below.
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Install dependencies
-        # npm install (not npm ci) — no committed package-lock.json in a greenfield repo.
-        # npm ci hard-fails without a matching lockfile; npm install resolves and creates one.
         run: npm install
 
       - name: Lint
         run: npm run lint
 
-      - name: Type-check (JSX project — skipped; no tsconfig present)
-        # This project is plain JSX, not TypeScript. tsc --noEmit is omitted to
-        # avoid a missing-tsconfig failure. Add a tsconfig.json to enable this step.
-        run: echo "No TypeScript config — skipping tsc step."
-
-      - name: Run tests
+      - name: Test
         run: npm test
