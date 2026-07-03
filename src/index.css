@@ -1,0 +1,55 @@
+/* ============================================================
+   GLOBAL STYLES — Pawfume & Co
+   tokens.css MUST be the very first @import so all custom
+   properties are defined before any subsequent rule references
+   them via var().
+   ============================================================ */
+@import './tokens.css';
+
+/* ── Box-sizing reset ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base document styles ─────────────────────────────────── */
+:root {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-soft-black);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}

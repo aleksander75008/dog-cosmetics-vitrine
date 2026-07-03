@@ -1,0 +1,33 @@
+/* ── SectionWrapper ─────────────────────────────────────────
+   All values reference CSS custom property tokens exclusively.
+   ─────────────────────────────────────────────────────────── */
+.section-wrapper {
+  width: 100%;
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+/* Alternate sections get a subtle background tint for visual rhythm */
+.section-wrapper:nth-of-type(even) {
+  background-color: var(--color-grey-light);
+}
+
+.section-wrapper__inner {
+  max-width: 72rem; /* ~1152px — kept as a layout constant, not a brand token */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-wrapper__inner h1,
+.section-wrapper__inner h2 {
+  margin-bottom: var(--space-md);
+  color: var(--color-soft-black);
+}
+
+.section-wrapper__inner p {
+  max-width: 42rem;
+  color: var(--color-soft-black);
+  opacity: 0.8;
+}
