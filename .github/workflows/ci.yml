@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-lint-test:
+    name: Install, Lint & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          # Cache with a restore-keys fallback so a missing lockfile on first
+          # run doesn't fail the job (npm install generates it fresh).
+          cache: 'npm'
+          cache-dependency-path: package.json
+
+      - name: Install dependencies
+        # Use `npm install`, NOT `npm ci` — no committed package-lock.json
+        # exists in this repo, and `npm ci` hard-fails without one.
+        run: npm install
+
+      - name: Lint
+        run: npx eslint src
+
+      - name: Test
+        run: npx vitest run
