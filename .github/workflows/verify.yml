@@ -1,0 +1,32 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          # restore-keys fallback ensures a cache miss on first run
+          # (before package-lock.json exists) does not fail the job.
+
+      - name: Install dependencies
+        # npm install (NOT npm ci) — greenfield repo has no committed
+        # package-lock.json; npm ci would hard-fail without one.
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
