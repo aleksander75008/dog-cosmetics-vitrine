@@ -1,0 +1,36 @@
+/* ============================================================
+   DESIGN TOKENS — Pawfume & Co
+   Single source of truth for all visual constants.
+   Every component CSS file must reference var(--token-name);
+   no hard-coded hex, px, or numeric values in components.
+   ============================================================ */
+:root {
+  /* ── Brand Colours ──────────────────────────────────────── */
+  --color-cream:      #faf6f0;
+  --color-gold:       #c9a84c;
+  --color-gold-dark:  #a8873a;
+  --color-soft-black: #1a1a1a;
+  --color-white:      #ffffff;
+  --color-grey-light: #ede8e0;
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* ── Spacing Scale ──────────────────────────────────────── */
+  --space-xs:  0.25rem;  /*  4px */
+  --space-sm:  0.5rem;   /*  8px */
+  --space-md:  1rem;     /* 16px */
+  --space-lg:  2rem;     /* 32px */
+  --space-xl:  4rem;     /* 64px */
+
+  /* ── Border Radius ──────────────────────────────────────── */
+  --radius-sm: 0.25rem;  /*  4px */
+  --radius-md: 0.5rem;   /*  8px */
+
+  /* ── Z-index ────────────────────────────────────────────── */
+  --z-navbar: 100;
+
+  /* ── Transitions ────────────────────────────────────────── */
+  --transition-fast: 150ms ease;
+}
