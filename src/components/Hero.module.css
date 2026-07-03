@@ -1,0 +1,100 @@
+/* ─── Hero Section ────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100vh; /* min- so content is never clipped on small viewports */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /*
+   * Stable Unsplash CDN path (photo ID: 1587300003388-59208cc962cb).
+   * Applied via CSS background-image — avoids <img> width/height requirements
+   * and eliminates broken-img console errors in test environments.
+   */
+  background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #2a2a2a; /* fallback while image loads */
+}
+
+/* ─── Gradient Overlay ────────────────────────────────────────────────────── */
+
+.overlay {
+  position: absolute;
+  inset: 0; /* top/right/bottom/left: 0 */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.55)
+  );
+  z-index: 0;
+}
+
+/* ─── Content ─────────────────────────────────────────────────────────────── */
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding: 2rem 1.5rem;
+  color: #ffffff;
+}
+
+.headline {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.subheadline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* ─── CTA Button ──────────────────────────────────────────────────────────── */
+
+.cta {
+  display: inline-block;
+  padding: 0.875rem 2.25rem;
+  background-color: #c9a96e; /* warm gold — on-brand luxury tone */
+  color: #1a1a1a;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background-color: #b8924f;
+  transform: translateY(-2px);
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* ─── Mobile ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .content {
+    padding: 2rem 1rem;
+  }
+
+  .cta {
+    width: 100%;
+    text-align: center;
+  }
+}

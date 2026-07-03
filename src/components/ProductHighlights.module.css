@@ -1,0 +1,80 @@
+/* ─── Product Highlights Section ─────────────────────────────────────────── */
+
+.section {
+  padding: 5rem 2rem;
+  background-color: #faf9f7;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+}
+
+/* ─── 3-Column Grid (desktop) ─────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+/* ─── Card ────────────────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background-color: #ffffff;
+  border: 1px solid #ece9e3;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  /* Emoji rendering — no external image, zero broken-src risk */
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.cardDescription {
+  font-size: 0.9375rem;
+  color: #555555;
+  line-height: 1.65;
+}
+
+/* ─── Single-Column Stack (mobile) ───────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+}
