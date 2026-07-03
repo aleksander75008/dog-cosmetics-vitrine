@@ -1,3 +1,7 @@
 // Extends Vitest's expect with @testing-library/jest-dom matchers.
-// Uses the bare package specifier — the /vitest subpath does not exist in v6.
-import '@testing-library/jest-dom';
+// globals: false means Vitest does NOT inject `expect` as a global, so the
+// bare `import '@testing-library/jest-dom'` fails (it calls the global expect
+// internally). Instead we import the matchers object and extend explicitly.
+import { expect } from 'vitest';
+import * as matchers from '@testing-library/jest-dom/matchers';
+expect.extend(matchers);
