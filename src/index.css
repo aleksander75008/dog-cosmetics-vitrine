@@ -1,0 +1,33 @@
+/*
+ * Global styles — imported only via src/main.jsx.
+ *
+ * scroll-behavior: smooth is intentionally defined here and NOT in any file
+ * imported by tests. jsdom does not implement scroll behaviour, so placing
+ * this rule here keeps the test environment clean and avoids false failures.
+ * It is active exclusively when the app runs in a real browser.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #fafafa;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
