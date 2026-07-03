@@ -1,66 +1,51 @@
-import styles from './ProductHighlights.module.css';
+import React from 'react';
+import './ProductHighlights.css';
 
-/**
- * @typedef {Object} HighlightCard
- * @property {string} id      - Unique identifier for the card.
- * @property {string} icon    - Emoji icon (no external image dependency).
- * @property {string} title   - Short product category title.
- * @property {string} description - One-line description of the highlight.
- */
+/** @typedef {{ id: number, title: string, description: string }} HighlightCard */
 
 /** @type {HighlightCard[]} */
 const HIGHLIGHTS = [
   {
-    id: 'natural-ingredients',
-    icon: '🌿',
-    title: 'Natural Ingredients',
+    id: 1,
+    title: 'Nourishing Shampoo',
     description:
-      'Botanically sourced formulas free from parabens, sulphates, and artificial dyes.',
+      'Gentle, sulphate-free formula enriched with oat extract and aloe vera for a silky, shiny coat.',
   },
   {
-    id: 'precision-grooming',
-    icon: '✂️',
-    title: 'Precision Grooming',
+    id: 2,
+    title: 'Paw Balm',
     description:
-      'Professional-grade tools engineered for every coat type and breed size.',
+      'Protective balm with shea butter and beeswax that soothes cracked paws and shields against rough terrain.',
   },
   {
-    id: 'paw-care',
-    icon: '🐾',
-    title: 'Paw & Skin Care',
+    id: 3,
+    title: 'Detangling Spray',
     description:
-      'Vet-approved balms and serums that soothe, protect, and restore sensitive skin.',
+      'Lightweight leave-in conditioner that eliminates knots and reduces brushing time — no rinsing needed.',
   },
 ];
 
 /**
- * ProductHighlights component.
+ * ProductHighlights section.
  *
- * Renders a horizontal strip of exactly 3 highlight cards immediately below
- * the Hero section. Each card uses an emoji icon to avoid any external image
- * dependencies and the associated broken-src console errors.
+ * Renders exactly 3 `.highlight-card` divs (className must match exactly
+ * for the test assertion: querySelectorAll('.highlight-card').length === 3).
  *
- * @returns {JSX.Element} The product highlights section element.
+ * The section carries id="gallery" so the Hero CTA href=#gallery
+ * smooth-scrolls to a visible destination.
  */
 export default function ProductHighlights() {
   return (
-    <section
-      id="product-highlights"
-      className={styles.section}
-      aria-label="Product highlights"
-    >
-      <h2 className={styles.sectionTitle}>Why Choose Us</h2>
-      <ul className={styles.grid} role="list">
-        {HIGHLIGHTS.map(({ id, icon, title, description }) => (
-          <li key={id} className={styles.card}>
-            <span className={styles.icon} aria-hidden="true">
-              {icon}
-            </span>
-            <h3 className={styles.cardTitle}>{title}</h3>
-            <p className={styles.cardDescription}>{description}</p>
-          </li>
+    <section id="gallery" className="product-highlights">
+      <h2 className="highlights-heading">Our Bestsellers</h2>
+      <div className="highlights-grid">
+        {HIGHLIGHTS.map((card) => (
+          <div key={card.id} className="highlight-card">
+            <h3 className="highlight-card__title">{card.title}</h3>
+            <p className="highlight-card__description">{card.description}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

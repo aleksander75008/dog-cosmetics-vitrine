@@ -1,36 +1,26 @@
-import styles from './Hero.module.css';
+import React from 'react';
+import './Hero.css';
 
 /**
  * Hero section component.
  *
- * Renders a full-viewport section with:
- * - A stable Unsplash background image applied via CSS (no <img> tag).
- * - A dark gradient overlay for WCAG-compliant text contrast.
- * - A centred headline, subheadline, and smooth-scroll CTA button.
- *
- * @returns {JSX.Element} The hero section element.
+ * - id="hero" for direct anchor targeting.
+ * - Full-viewport height (min-height: 100vh) set via Hero.css.
+ * - Unsplash background image with a semi-transparent overlay for
+ *   WCAG AA contrast (rgba(0,0,0,0.5) layered over the photo).
+ * - CTA button links to #gallery (the ProductHighlights section).
  */
 export default function Hero() {
   return (
-    <section id="hero" className={styles.hero} aria-label="Hero">
-      {/* Gradient overlay — absolutely positioned, z-index 0 */}
-      <div className={styles.overlay} aria-hidden="true" />
-
-      {/* Content sits above the overlay via z-index 1 */}
-      <div className={styles.content}>
-        <h1 className={styles.headline}>
-          Luxury Grooming, Tailored for Your Dog
-        </h1>
-        <p className={styles.subheadline}>
-          Premium, natural formulas crafted by veterinary dermatologists —
-          because your companion deserves the finest care.
+    <section id="hero" className="hero">
+      <div className="hero-content">
+        <h1>Premium Grooming for Your Best Friend</h1>
+        <p>
+          Discover our all-natural dog cosmetics — crafted with love,
+          tested by tails.
         </p>
-        <a
-          href="#gallery"
-          className={styles.cta}
-          aria-label="Explore our product collection"
-        >
-          Explore Collection
+        <a href="#gallery" className="hero-cta" role="button">
+          Shop the Collection
         </a>
       </div>
     </section>
