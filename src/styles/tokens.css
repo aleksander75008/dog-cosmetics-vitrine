@@ -1,0 +1,25 @@
+:root {
+  /* Brand colours */
+  --color-cream: #fdf6e3;
+  --color-gold: #c9a84c;
+  --color-gold-dark: #a8872e;
+  --color-black: #1a1a1a;
+
+  /* Typography */
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;  /* 4px  */
+  --space-sm: 0.5rem;   /* 8px  */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 4rem;     /* 64px */
+
+  /* Border radius */
+  --radius-pill: 9999px;
+  --radius-card: 0.75rem;
+
+  /* Layout */
+  --max-width: 1200px;
+}
