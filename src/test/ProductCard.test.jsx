@@ -5,7 +5,10 @@ import { ProductCard } from '../components/ProductCard';
 
 describe('ProductCard', () => {
   it('renders product name', () => {
-    render(<ProductCard name="Test Product" price={9.99} imageUrl="/img.jpg" />);
+    const { container } = render(
+      <ProductCard name="Test Product" price={9.99} imageUrl="/img.jpg" />
+    );
+    expect(container.querySelector('*')).toBeTruthy();
     expect(screen.getByText('Test Product')).toBeTruthy();
   });
 
@@ -13,7 +16,9 @@ describe('ProductCard', () => {
     const scrollIntoView = vi.fn();
     window.HTMLElement.prototype.scrollIntoView = scrollIntoView;
 
-    render(<ProductCard name="Scroll Product" price={4.99} imageUrl="/img.jpg" scrollOnMount />);
+    render(
+      <ProductCard name="Scroll Product" price={4.99} imageUrl="/img.jpg" scrollOnMount />
+    );
 
     expect(scrollIntoView).toHaveBeenCalled();
   });
