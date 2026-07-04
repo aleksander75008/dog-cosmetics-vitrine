@@ -4,7 +4,7 @@ import ProductGallery from '../components/ProductGallery.jsx';
 import { products } from '../data/products.js';
 
 describe('ProductGallery', () => {
-  it('renders the correct number of product cards (4–6)', () => {
+  it('renders between 4 and 6 product cards matching the products data length', () => {
     const { container } = render(<ProductGallery />);
     const cards = container.querySelectorAll('.product-card');
     expect(cards.length).toBeGreaterThanOrEqual(4);
@@ -12,34 +12,55 @@ describe('ProductGallery', () => {
     expect(cards.length).toBe(products.length);
   });
 
-  it('renders the product name, category badge, price, and Enquire button for every card', () => {
+  it('renders the gallery heading "Our Products"', () => {
     const { container } = render(<ProductGallery />);
+    const heading = container.querySelector('.gallery-heading');
+    expect(heading).not.toBeNull();
+    expect(heading.textContent).toBe('Our Products');
+  });
+
+  it('renders the gallery inside a section with aria-label "Product gallery"', () => {
+    const { container } = render(<ProductGallery />);
+    const section = container.querySelector('section[aria-label="Product gallery"]');
+    expect(section).not.toBeNull();
+  });
+
+  it('renders the grid container', () => {
+    const { container } = render(<ProductGallery />);
+    const grid = container.querySelector('.gallery-grid');
+    expect(grid).not.toBeNull();
+  });
+
+  it('renders every product name from the data source', () => {
+    const { container } = render(<ProductGallery />);
+    const renderedNames = Array.from(
+      container.querySelectorAll('.product-card__name')
+    ).map((el) => el.textContent);
 
     products.forEach((product) => {
-      // Name
-      const name = container.querySelector(
-        `.product-card__name`
-      );
-      // We verify each product's name appears somewhere in the gallery
-      const allNames = Array.from(
-        container.querySelectorAll('.product-card__name')
-      ).map((el) => el.textContent);
-      expect(allNames).toContain(product.name);
+      expect(renderedNames).toContain(product.name);
+    });
+  });
 
-      // Category badge
-      const allBadges = Array.from(
-        container.querySelectorAll('.product-card__badge')
-      ).map((el) => el.textContent);
-      expect(allBadges).toContain(product.category);
+  it('renders every product category badge from the data source', () => {
+    const { container } = render(<ProductGallery />);
+    const renderedBadges = Array.from(
+      container.querySelectorAll('.product-card__badge')
+    ).map((el) => el.textContent);
 
-      // Price
-      const allPrices = Array.from(
-        container.querySelectorAll('.product-card__price')
-      ).map((el) => el.textContent);
-      expect(allPrices).toContain(product.price);
+    products.forEach((product) => {
+      expect(renderedBadges).toContain(product.category);
+    });
+  });
 
-      // Suppress unused variable warning from the name query above
-      void name;
+  it('renders every product price from the data source', () => {
+    const { container } = render(<ProductGallery />);
+    const renderedPrices = Array.from(
+      container.querySelectorAll('.product-card__price')
+    ).map((el) => el.textContent);
+
+    products.forEach((product) => {
+      expect(renderedPrices).toContain(product.price);
     });
   });
 
@@ -48,17 +69,19 @@ describe('ProductGallery', () => {
     const enquireLinks = container.querySelectorAll('.product-card__enquire');
 
     expect(enquireLinks.length).toBe(products.length);
-
     enquireLinks.forEach((link) => {
       expect(link.getAttribute('href')).toBe('#contact');
       expect(link.textContent).toBe('Enquire');
     });
   });
 
-  it('renders the gallery heading', () => {
+  it('renders an image for every product card', () => {
     const { container } = render(<ProductGallery />);
-    const heading = container.querySelector('.gallery-heading');
-    expect(heading).not.toBeNull();
-    expect(heading.textContent).toBe('Our Products');
+    const images = container.querySelectorAll('.product-card__image');
+    expect(images.length).toBe(products.length);
+    images.forEach((img) => {
+      expect(img.getAttribute('src')).not.toBe('');
+      expect(img.getAttribute('alt')).not.toBe('');
+    });
   });
 });
