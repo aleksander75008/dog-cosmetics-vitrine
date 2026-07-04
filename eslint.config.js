@@ -5,8 +5,8 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 /**
  * ESLint v9 flat-config array.
  *
- * Entry 3 spreads reactHooksPlugin.configs['recommended'] as its own
- * standalone object so that both the `plugins` key AND the `rules` key
+ * Entry 3 includes reactHooksPlugin.configs['recommended'] as a standalone
+ * flat-config object so that both the `plugins` key AND the `rules` key
  * are registered together — pulling out only `.rules` silently drops the
  * plugin registration and causes "Definition for rule react-hooks/rules-of-hooks
  * was not found" at lint time.
@@ -47,12 +47,12 @@ export default [
     },
   },
 
-  // 3. React Hooks — spread the entire recommended config array directly into
-  //    the top-level array so each entry (with its `plugins` + `rules` keys)
-  //    is registered as a standalone flat-config object. Wrapping in another
-  //    object literal would spread array indices as numeric keys, which ESLint
-  //    rejects with exit code 2.
-  ...reactHooksPlugin.configs['recommended'],
+  // 3. React Hooks — include the recommended config object as a standalone
+  //    flat-config entry. In eslint-plugin-react-hooks v5, configs['recommended']
+  //    is a plain object (not an array), so it must be listed directly as an
+  //    array element. Spreading it with `...` would unpack its keys (plugins,
+  //    rules) as invalid top-level array entries, causing ESLint exit code 2.
+  reactHooksPlugin.configs['recommended'],
 
   // 4. Ignore build output and config artefacts
   {
