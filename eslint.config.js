@@ -47,12 +47,12 @@ export default [
     },
   },
 
-  // 3. React Hooks — spread the entire recommended config object so that
-  //    `plugins: { 'react-hooks': reactHooksPlugin }` is included alongside rules.
-  {
-    files: ['**/*.{js,jsx}'],
-    ...reactHooksPlugin.configs['recommended'],
-  },
+  // 3. React Hooks — spread the entire recommended config array directly into
+  //    the top-level array so each entry (with its `plugins` + `rules` keys)
+  //    is registered as a standalone flat-config object. Wrapping in another
+  //    object literal would spread array indices as numeric keys, which ESLint
+  //    rejects with exit code 2.
+  ...reactHooksPlugin.configs['recommended'],
 
   // 4. Ignore build output and config artefacts
   {
