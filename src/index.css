@@ -1,0 +1,80 @@
+/* ─── Global reset + base ─────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Enables smooth scrolling for all anchor links (e.g. href="#contact") */
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #fafaf9;
+  color: #1c1917;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Contact stub section ────────────────────────────────────────────────── */
+
+#contact {
+  padding: 80px 24px;
+  background-color: #1c1917;
+  color: #fafaf9;
+  text-align: center;
+}
+
+.contact-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#contact h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#contact p {
+  font-size: 1rem;
+  color: #a8a29e;
+  max-width: 420px;
+}
+
+.contact-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 28px;
+  border: 2px solid #d97706;
+  color: #d97706;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-link:hover {
+  background-color: #d97706;
+  color: #fff;
+}

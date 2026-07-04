@@ -1,69 +1,63 @@
 /**
- * Static product catalogue for the dog cosmetics vitrine.
- * Each product contains all fields required by the Gallery card.
- *
- * Unsplash photo IDs have been verified to exist.
- * URLs include ?w=600&auto=format for optimised delivery.
- *
  * @typedef {Object} Product
- * @property {string} id          - Unique identifier
- * @property {string} name        - Display name
- * @property {string} category    - Product category label
- * @property {string} price       - Formatted price string (e.g. '€34.00')
- * @property {string} description - One-to-two sentence product description
- * @property {string} image       - Absolute Unsplash image URL
+ * @property {string} id          - Unique identifier (used as React key)
+ * @property {string} name        - Display name of the product
+ * @property {string} category    - Category badge label
+ * @property {string} price       - Formatted price string (e.g. "$24.99")
+ * @property {string} description - Short marketing description (≤ 120 chars)
+ * @property {string} image       - Unsplash CDN URL (600×450, fit=crop)
  */
 
 /** @type {Product[]} */
 export const products = [
   {
-    id: 'p1',
-    name: 'Oat & Lavender Shampoo',
+    id: 'prod-001',
+    name: 'Silky Coat Shampoo',
     category: 'Shampoo',
-    price: '€28.00',
+    price: '$24.99',
     description:
-      'A gentle, soap-free shampoo enriched with colloidal oat and lavender essential oil. Leaves your dog\'s coat soft, clean, and calmly scented.',
+      'A gentle, sulphate-free formula that deep-cleans and leaves your dog's coat brilliantly soft and shiny.',
     image:
-      'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&auto=format',
+      'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&h=450&fit=crop',
   },
   {
-    id: 'p2',
-    name: 'Argan Silk Conditioner',
+    id: 'prod-002',
+    name: 'Moisture-Rich Conditioner',
     category: 'Conditioner',
-    price: '€32.00',
+    price: '$22.99',
     description:
-      'Deep-conditioning treatment with argan oil and shea butter that detangles and adds brilliant shine. Suitable for all coat types.',
+      'Infused with argan oil and aloe vera to detangle, hydrate, and protect every strand from root to tip.',
     image:
-      'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&auto=format',
+      'https://images.unsplash.com/photo-1585232351009-aa87416fca55?w=600&h=450&fit=crop',
   },
   {
-    id: 'p3',
-    name: 'Floral Mist Perfume',
-    category: 'Perfume',
-    price: '€24.00',
+    id: 'prod-003',
+    name: 'Pawfume Eau de Toilette',
+    category: 'Fragrance',
+    price: '$34.99',
     description:
-      'A light, alcohol-free body mist with notes of rose and chamomile. Safe for sensitive skin and long-lasting between baths.',
+      'A light, pet-safe scent with notes of vanilla and white musk — keep your pup smelling fresh all day.',
     image:
-      'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&auto=format',
+      'https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&h=450&fit=crop',
   },
   {
-    id: 'p4',
-    name: 'Beeswax Paw Balm',
+    id: 'prod-004',
+    name: 'Healing Paw Balm',
     category: 'Paw Care',
-    price: '€18.00',
+    price: '$18.99',
     description:
-      'Protective balm made with beeswax, coconut oil, and vitamin E. Heals cracked pads and shields paws from hot pavements and winter salt.',
+      'Shea butter and beeswax blend that soothes cracked pads and forms a protective barrier against rough terrain.',
     image:
-      'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=600&auto=format',
+      'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=450&fit=crop',
   },
   {
-    id: 'p5',
-    name: 'Omega Coat Serum',
-    category: 'Coat Serum',
-    price: '€38.00',
+    id: 'prod-005',
+    name: 'Gloss & Shine Coat Serum',
+    category: 'Treatment',
+    price: '$29.99',
     description:
-      'Concentrated leave-in serum packed with omega-3 and omega-6 fatty acids. Reduces shedding and restores lustre to dull or brittle coats.',
+      'A lightweight leave-in serum packed with omega-3 and vitamin E to restore lustre and reduce shedding.',
     image:
-      'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=600&auto=format',
+      'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=600&h=450&fit=crop',
   },
 ];
