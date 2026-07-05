@@ -1,0 +1,29 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package.json
+
+      - name: Install dependencies
+        # npm install (not npm ci): greenfield repo has no committed
+        # package-lock.json — npm ci hard-fails without a matching lockfile.
+        # npm install resolves deps fresh and writes the lockfile in the runner.
+        run: npm install
+
+      - name: Run tests
+        run: npm test
